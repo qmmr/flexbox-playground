@@ -1,0 +1,22 @@
+/*
+
+colors:
+
+004358
+1F8A70
+BEDB39
+FFE11A
+FD7400
+
+*/
+
+@import '~antd/dist/antd.css';
+
+.flexbox-app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: gainsboro;
+    color: #444;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 1);
+}
