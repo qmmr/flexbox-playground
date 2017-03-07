@@ -57,9 +57,7 @@ class Container extends Component {
                 boxes: this._boxRefs.map((box, idx) => {
                     const boxOffsetLeft = box.box.offsetLeft
                     const currentBox = this.state.boxes[ idx ]
-                    const x = boxOffsetLeft >= currentBox.prevOffsetLeft
-                            ? currentBox.prevOffsetLeft - boxOffsetLeft
-                            : currentBox.prevOffsetLeft - boxOffsetLeft
+                    const x = currentBox.prevOffsetLeft - boxOffsetLeft
                     const newBox = {
                         ...currentBox,
                         prevOffsetLeft: boxOffsetLeft,
@@ -72,12 +70,14 @@ class Container extends Component {
             })
         })
     }
+
     handleFlexDirectionChange = (evt) => {
         this.setState({
             axis: /row/.test(evt) ? 'x' : 'y',
             styles: { ...this.state.styles, flexDirection: evt }
         })
     }
+
     handleAlignItemsChange = (evt) => this.setState({ styles: { ...this.state.styles, alignItems: evt } })
     handleHeightChange = (evt) => this.setState({ styles: { ...this.state.styles, height: `${ evt }px` } })
     handleWidthChange = (evt) => this.setState({ styles: { ...this.state.styles, width: `${ evt }px` } })
@@ -91,7 +91,6 @@ class Container extends Component {
                 number={ idx }
                 axis={ this.state.axis }
                 x={ box.x }
-                prevOffsetLeft={ box.prevOffsetLeft }
             />
         })
     }
