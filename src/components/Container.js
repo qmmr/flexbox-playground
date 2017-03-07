@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { Select } from 'antd'
 
+import { FLEX_START, ROW } from '../constants'
 import Box from './Box'
 
 import './Container.css'
@@ -21,12 +22,12 @@ class Container extends Component {
     state = {
         axis: 'x',
         styles: {
-            alignItems: 'flex-start',
+            alignItems: FLEX_START,
             backgroundColor: 'lightgray',
             display: 'flex',
-            flexDirection: 'row',
+            flexDirection: ROW,
             height: '600px',
-            justifyContent: 'flex-start',
+            justifyContent: FLEX_START,
             width: `${ this.props.windowInnerWidth - 200 - 15 }px`,
         },
         boxes: [
