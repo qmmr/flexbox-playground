@@ -10,20 +10,34 @@ const { Header, Footer, Sider, Content } = Layout
 class FlexboxPlaygroundApp extends Component {
 
     state = {
+        windowInnerWidth: null,
         containers: [
-            <Container key={ 0 } />
+            <Container key={ 0 } windowInnerWidth={ window.innerWidth } />
         ]
     }
 
+    handleResize = (evt) => {
+        this.setState({ windowInnerWidth: window.innerWidth });
+    }
+
+    componentDidMount() {
+        window.addEventListener('resize', this.handleResize)
+        this.setState({ windowInnerWidth: window.innerWidth });
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleResize)
+    }
+
     handleAddContainer = () => {
+        const { containers, windowInnerWidth } = this.state
         this.setState({
-            containers: [ ...this.state.containers, <Container key={ this.state.containers + 1 } /> ]
+            containers: [ ...containers, <Container key={ containers.length + 1 } windowInnerWidth={ windowInnerWidth } /> ]
         })
     }
 
-    renderContainers = () => {
-        return this.state.containers
-    }
+    renderContainers = () => this.state.containers.map((container, idx) =>
+            this.state.windowInnerWidth && <Container key={ idx } windowInnerWidth={ this.state.windowInnerWidth } />)
 
     render() {
         return (

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import { Select } from 'antd'
 
 import Box from './Box'
@@ -12,6 +12,10 @@ class Container extends Component {
         boxColors: [ '#004358', '#1F8A70', '#BEDB39', '#FFE11A', '#FD7400' ]
     }
 
+    static propTypes = {
+        windowInnerWidth: PropTypes.number.isRequired,
+    }
+
     _boxRefs = []
 
     state = {
@@ -23,7 +27,7 @@ class Container extends Component {
             flexDirection: 'row',
             height: '600px',
             justifyContent: 'flex-start',
-            width: `${ window.outerWidth - 200 - 15 }px`,
+            width: `${ this.props.windowInnerWidth - 200 - 15 }px`,
         },
         boxes: [
             { backgroundColor: '#004358', x: 0, prevOffsetLeft: 0 },
